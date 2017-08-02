@@ -21,6 +21,7 @@ public class KeyBoardUtils {
     public static void closeKeybordBase(Context mContext, Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
+            //不一定是通过EditText来获取焦点，使软键盘关闭；可以使用应用界面最上层的view来获取焦点，使软键盘关闭
             inputMethodManager.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
@@ -33,9 +34,11 @@ public class KeyBoardUtils {
      * @param mContext  上下文
      */
     public static void openKeybord(EditText mEditText, Context mContext) {
-        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
     }
 
     /**
@@ -45,9 +48,11 @@ public class KeyBoardUtils {
      * @param mContext  上下文
      */
     public static void closeKeybord(EditText mEditText, Context mContext) {
-        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+        }
 
-        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
     }
 
 
