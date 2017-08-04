@@ -21,7 +21,7 @@ import java.net.URLConnection;
 
 
 /**
- * Created by zhangjing on 2017/8/2.
+ * Created by zhangjing on 2015/8/2.
  * 图像压缩
  */
 
